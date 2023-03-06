@@ -22,4 +22,4 @@ sudo dnf update -y
 # 3. Install PackStack
 sudo dnf install -y openstack-packstack
 sudo setenforce 0
-sudo packstack --allinone
+sudo packstack --answer-file answers.txt
