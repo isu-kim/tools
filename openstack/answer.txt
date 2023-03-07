@@ -88,14 +88,14 @@ CONFIG_DEBUG_MODE=n
 
 # Server on which to install OpenStack services specific to the
 # controller role (for example, API servers or dashboard).
-CONFIG_CONTROLLER_HOST=172.25.244.13
+CONFIG_CONTROLLER_HOST=10.0.20.162
 
 # List the servers on which to install the Compute service.
-CONFIG_COMPUTE_HOSTS=172.25.244.13,172.25.244.11,172.25.244.12
+CONFIG_COMPUTE_HOSTS=10.0.20.162
 
 # List of servers on which to install the network service such as
 # Compute networking (nova network) or OpenStack Networking (neutron).
-CONFIG_NETWORK_HOSTS=172.25.244.13
+CONFIG_NETWORK_HOSTS=10.0.20.162
 
 # Specify 'y' if you want to use VMware vCenter as hypervisor and
 # storage; otherwise, specify 'n'. ['y', 'n']

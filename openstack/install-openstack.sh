@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Install OpenStack using Packstack
-# This will only work on CentOS (min 8 Stream)
+# This will only work on CentOS 9
 # The original commands came from: https://www.rdoproject.org/install/packstack/
 
 # 1. Set Network settings
@@ -15,11 +15,11 @@ sudo systemctl enable network
 sudo systemctl start network
 
 # 2. Add Repositories and install OpenStack Yoga
-sudo dnf config-manager --enable powertools
-sudo dnf install -y centos-release-openstack-yoga
+sudo dnf config-manager --enable crb
+sudo dnf install -y centos-release-openstack-zed
 sudo dnf update -y
 
 # 3. Install PackStack
 sudo dnf install -y openstack-packstack
 sudo setenforce 0
-sudo packstack --answer-file answers.txt
+sudo packstack --allinone
