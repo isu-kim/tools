@@ -4,7 +4,7 @@
 # been installed on the remote servers, the user is prompted for a
 # password and this key is installed so the password will not be
 # required again.
-CONFIG_SSH_KEY=/home/isu/.ssh/id_rsa.pub
+CONFIG_SSH_KEY=/root/.ssh/id_rsa.pub
 
 # Default password to be used everywhere (overridden by passwords set
 # for individual services or users).
@@ -58,7 +58,7 @@ CONFIG_HEAT_INSTALL=n
 
 # Specify 'y' to install OpenStack Container Infrastructure
 # Management Service (magnum). ['y', 'n']
-CONFIG_MAGNUM_INSTALL=y
+CONFIG_MAGNUM_INSTALL=n
 
 # Specify 'y' to install OpenStack Database (trove) ['y', 'n']
 CONFIG_TROVE_INSTALL=n
@@ -88,14 +88,14 @@ CONFIG_DEBUG_MODE=n
 
 # Server on which to install OpenStack services specific to the
 # controller role (for example, API servers or dashboard).
-CONFIG_CONTROLLER_HOST=10.0.20.162
+CONFIG_CONTROLLER_HOST=172.25.244.13
 
 # List the servers on which to install the Compute service.
-CONFIG_COMPUTE_HOSTS=10.0.20.162
+CONFIG_COMPUTE_HOSTS=172.25.244.13, 172.25.244.11, 172.25.244.12
 
 # List of servers on which to install the network service such as
 # Compute networking (nova network) or OpenStack Networking (neutron).
-CONFIG_NETWORK_HOSTS=10.0.20.162
+CONFIG_NETWORK_HOSTS=172.25.244.13
 
 # Specify 'y' if you want to use VMware vCenter as hypervisor and
 # storage; otherwise, specify 'n'. ['y', 'n']
@@ -290,17 +290,17 @@ CONFIG_AMQP_AUTH_PASSWORD=PW_PLACEHOLDER
 # installation was not specified in CONFIG_MARIADB_INSTALL, specify
 # the IP address of an existing database server (a MariaDB cluster can
 # also be specified).
-CONFIG_MARIADB_HOST=127.0.0.1
+CONFIG_MARIADB_HOST=172.25.244.13
 
 # User name for the MariaDB administrative user.
 CONFIG_MARIADB_USER=root
 
 # Password for the MariaDB administrative user.
-CONFIG_MARIADB_PW=cfa70c5820da480e
+CONFIG_MARIADB_PW=9630ac9fc2ab4a6f
 
 # Password to use for the Identity service (keystone) to access the
 # database.
-CONFIG_KEYSTONE_DB_PW=37dd13ffc9ac4835
+CONFIG_KEYSTONE_DB_PW=b8d04d45e0e54ea1
 
 # Enter y if cron job to rotate Fernet tokens should be created.
 CONFIG_KEYSTONE_FERNET_TOKEN_ROTATE_ENABLE=True
@@ -317,10 +317,10 @@ CONFIG_KEYSTONE_ADMIN_EMAIL=root@localhost
 CONFIG_KEYSTONE_ADMIN_USERNAME=admin
 
 # Password to use for the Identity service 'admin' user.
-CONFIG_KEYSTONE_ADMIN_PW=d8f553af9fb34742
+CONFIG_KEYSTONE_ADMIN_PW=d5e9ba2576ea448b
 
 # Password to use for the Identity service 'demo' user.
-CONFIG_KEYSTONE_DEMO_PW=b5ad2e1453ac4f45
+CONFIG_KEYSTONE_DEMO_PW=c1066cf872a14996
 
 # Identity service API version string. ['v2.0', 'v3']
 CONFIG_KEYSTONE_API_VERSION=v3
@@ -472,11 +472,11 @@ CONFIG_KEYSTONE_LDAP_TLS_REQ_CERT=demand
 
 # Password to use for the Image service (glance) to access the
 # database.
-CONFIG_GLANCE_DB_PW=0aa5cabc68eb40a7
+CONFIG_GLANCE_DB_PW=577547ff01be4f54
 
 # Password to use for the Image service to authenticate with the
 # Identity service.
-CONFIG_GLANCE_KS_PW=0c75c979c3df41a6
+CONFIG_GLANCE_KS_PW=86b811cdfa5d4b81
 
 # Storage backend for the Image service (controls how the Image
 # service stores disk images). Valid options are: file or swift
@@ -487,7 +487,7 @@ CONFIG_GLANCE_BACKEND=file
 
 # Password to use for the Block Storage service (cinder) to access
 # the database.
-CONFIG_CINDER_DB_PW=793a30e902624e38
+CONFIG_CINDER_DB_PW=1a26b93a1e26435b
 
 # Enter y if cron job for removing soft deleted DB rows should be
 # created.
@@ -495,7 +495,7 @@ CONFIG_CINDER_DB_PURGE_ENABLE=True
 
 # Password to use for the Block Storage service to authenticate with
 # the Identity service.
-CONFIG_CINDER_KS_PW=5965d271201e4a92
+CONFIG_CINDER_KS_PW=42d35474bedd433f
 
 # Storage backend to use for the Block Storage service; valid options
 # are: lvm, nfs, vmdk, netapp, solidfire. ['lvm', 'nfs', 'vmdk',
@@ -671,11 +671,11 @@ CONFIG_NOVA_DB_PURGE_ENABLE=True
 
 # Password to use for the Compute service (nova) to access the
 # database.
-CONFIG_NOVA_DB_PW=6e4055d11dfc4ed8
+CONFIG_NOVA_DB_PW=1149ec39340f49ca
 
 # Password to use for the Compute service to authenticate with the
 # Identity service.
-CONFIG_NOVA_KS_PW=0e0d423615a74d6d
+CONFIG_NOVA_KS_PW=b07a0159f8644fbf
 
 # Whether or not Packstack should manage a default initial set of
 # Nova flavors. Defaults to 'y'.
@@ -721,11 +721,11 @@ CONFIG_NOVA_LIBVIRT_VIRT_TYPE=%{::default_hypervisor}
 
 # Password to use for OpenStack Networking (neutron) to authenticate
 # with the Identity service.
-CONFIG_NEUTRON_KS_PW=baa7fcec112f4111
+CONFIG_NEUTRON_KS_PW=f91ba4da0f1f44ac
 
 # The password to use for OpenStack Networking to access the
 # database.
-CONFIG_NEUTRON_DB_PW=04d1655575944935
+CONFIG_NEUTRON_DB_PW=653f1b795793467e
 
 # The name of the Open vSwitch bridge (or empty for linuxbridge) for
 # the OpenStack Networking L3 agent to use for external  traffic.
@@ -734,7 +734,7 @@ CONFIG_NEUTRON_DB_PW=04d1655575944935
 CONFIG_NEUTRON_L3_EXT_BRIDGE=br-ex
 
 # Password for the OpenStack Networking metadata agent.
-CONFIG_NEUTRON_METADATA_PW=c2b0e13b896c45ab
+CONFIG_NEUTRON_METADATA_PW=96bd20e3ba82453d
 
 # Specify 'y' to install OpenStack Networking's L3 Metering agent
 # ['y', 'n']
@@ -1036,10 +1036,11 @@ CONFIG_MANILA_GLUSTERFS_NATIVE_PATH_TO_PRIVATE_KEY=
 # of the GlusterFS backend) contain the #{size} parameter which
 # matches an integer (sequence of digits) in which case the value
 # shall be intepreted as size of the volume in GB. Examples: "manila-
-# share-volume-d+$", "manila-share-volume-#{size}G-d+$"; with matching
-# volume names, respectively: "manila-share-volume-12", "manila-share-
-# volume-3G-13". In latter example, the number that matches "#{size}",
-# that is, 3, is an indication that the size of volume is 3G.
+# share-volume- d+$", "manila-share-volume-#{size}G- d+$"; with
+# matching volume names, respectively: "manila-share-volume-12",
+# "manila-share-volume-3G-13". In latter example, the number that
+# matches "#{size}", that is, 3, is an indication that the size of
+# volume is 3G.
 CONFIG_MANILA_GLUSTERFS_VOLUME_PATTERN=
 
 # Specifies the GlusterFS volume to be mounted on the Manila host.
@@ -1063,7 +1064,7 @@ CONFIG_MANILA_GLUSTERFS_GANESHA_SERVER_IP=
 CONFIG_HORIZON_SSL=n
 
 # Secret key to use for Horizon Secret Encryption Key.
-CONFIG_HORIZON_SECRET_KEY=1123b4dfeb6d4961a17f30e1e590eb69
+CONFIG_HORIZON_SECRET_KEY=c0f07b274f564fdb86d566dad81dfdb9
 
 # PEM-encoded certificate to be used for SSL connections on the https
 # server. To generate a certificate, leave blank.
@@ -1077,7 +1078,7 @@ CONFIG_HORIZON_SSL_CACERT=
 
 # Password to use for the Object Storage service to authenticate with
 # the Identity service.
-CONFIG_SWIFT_KS_PW=990efbf766a74195
+CONFIG_SWIFT_KS_PW=8f5c22e829774809
 
 # Comma-separated list of devices to use as storage device for Object
 # Storage. Each entry must take the format /path/to/dev (for example,
@@ -1101,7 +1102,7 @@ CONFIG_SWIFT_STORAGE_FSTYPE=ext4
 # Custom seed number to use for swift_hash_path_suffix in
 # /etc/swift/swift.conf. If you do not provide a value, a seed number
 # is automatically generated.
-CONFIG_SWIFT_HASH=3bbb5345f4b3459c
+CONFIG_SWIFT_HASH=03f4a339c1b6418e
 
 # Size of the Object Storage loopback file storage device.
 CONFIG_SWIFT_STORAGE_SIZE=2G
@@ -1112,7 +1113,7 @@ CONFIG_HEAT_DB_PW=PW_PLACEHOLDER
 
 # Encryption key to use for authentication in the Orchestration
 # database (16, 24, or 32 chars).
-CONFIG_HEAT_AUTH_ENC_KEY=c703d06faf144b6b
+CONFIG_HEAT_AUTH_ENC_KEY=f4736b0c59af46b1
 
 # Password to use for the Orchestration service to authenticate with
 # the Identity service.
@@ -1141,7 +1142,7 @@ CONFIG_PROVISION_DEMO=y
 CONFIG_PROVISION_TEMPEST=n
 
 # CIDR network address for the floating IP subnet.
-CONFIG_PROVISION_DEMO_FLOATRANGE=10.0.0.0/24
+CONFIG_PROVISION_DEMO_FLOATRANGE=10.0.20.0/24
 
 # Allocation pools in the floating IP subnet.
 CONFIG_PROVISION_DEMO_ALLOCATION_POOLS=[]
@@ -1217,18 +1218,18 @@ CONFIG_SKIP_TEMPEST_TESTS=
 CONFIG_PROVISION_OVS_BRIDGE=y
 
 # Password to use for Gnocchi to access the database.
-CONFIG_GNOCCHI_DB_PW=53df556f991b493b
+CONFIG_GNOCCHI_DB_PW=a89709f4ba0746e5
 
 # Password to use for Gnocchi to authenticate with the Identity
 # service.
-CONFIG_GNOCCHI_KS_PW=6bfc102828e74307
+CONFIG_GNOCCHI_KS_PW=9e70e75be46c42a0
 
 # Secret key for signing Telemetry service (ceilometer) messages.
-CONFIG_CEILOMETER_SECRET=664df621c3cd498d
+CONFIG_CEILOMETER_SECRET=5764150d5d1e4a8f
 
 # Password to use for Telemetry to authenticate with the Identity
 # service.
-CONFIG_CEILOMETER_KS_PW=bcd290be1751493c
+CONFIG_CEILOMETER_KS_PW=32bfd240a5c14871
 
 # Ceilometer service name. ['httpd', 'ceilometer']
 CONFIG_CEILOMETER_SERVICE_NAME=httpd
@@ -1249,11 +1250,11 @@ CONFIG_REDIS_PORT=6379
 
 # Password to use for Telemetry Alarming to authenticate with the
 # Identity service.
-CONFIG_AODH_KS_PW=3824ec2dbe734847
+CONFIG_AODH_KS_PW=0b1712eddb9a4905
 
 # Password to use for Telemetry Alarming (AODH) to access the
 # database.
-CONFIG_AODH_DB_PW=7c3e118add28456e
+CONFIG_AODH_DB_PW=bc64366412a246d3
 
 # Password to use for OpenStack Database-as-a-Service (trove) to
 # access the database.
@@ -1284,8 +1285,8 @@ CONFIG_SAHARA_DB_PW=PW_PLACEHOLDER
 CONFIG_SAHARA_KS_PW=PW_PLACEHOLDER
 
 # Password to use for the Magnum to access the database.
-CONFIG_MAGNUM_DB_PW=1c0e90d50bc44e66
+CONFIG_MAGNUM_DB_PW=PW_PLACEHOLDER
 
 # Password to use for the Magnum to authenticate with the Identity
 # service.
-CONFIG_MAGNUM_KS_PW=79539093fab44d36
+CONFIG_MAGNUM_KS_PW=PW_PLACEHOLDER
