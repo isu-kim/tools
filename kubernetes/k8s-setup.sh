@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Ask input
-if ["$1" = "master"]; then
+if [ "$1" = "master" ]; then
 	echo Master Node Setup
 else
 	echo Worker Node Setup
@@ -12,20 +12,28 @@ read -n 1 -s
 echo "Continuing with the script"
 
 # Install Docker
-sudo curl -sSL https://get.docker.com/ | sh # Install Docker
-sudo gpasswd -a $USER docker # Enable docker without sudo
-sudo chmod 666 /var/run/docker.sock # Enable docker without sudo
+if command -v docker &> /dev/null; then
+	echo "Docker was installed"
+else
+	sudo curl -sSL https://get.docker.com/ | sh # Install Docker
+	sudo gpasswd -a $USER docker # Enable docker without sudo
+	sudo chmod 666 /var/run/docker.sock # Enable docker without sudo
+fi
 
-# Add K8s Repo
-curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add
-sudo apt-add-repository "deb http://apt.kubernetes.io/ kubernetes-xenial main"
+if command -v kubeadm &> /dev/null; then
+	echo "Kubernetes as installed"
+else
+	# Add K8s Repo
+	curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add
+	sudo apt-add-repository "deb http://apt.kubernetes.io/ kubernetes-xenial main"
 
-# Install Kubernetes (Docker)
-sudo apt-get install -y kubeadm=1.23.0-00 kubelet=1.23.0-00 kubectl=1.23.0-00
-sudo apt-mark hold kubeadm kubelet kubectl
+	# Install Kubernetes (Docker)
+	sudo apt-get install -y kubeadm=1.23.0-00 kubelet=1.23.0-00 kubectl=1.23.0-00
+	sudo apt-mark hold kubeadm kubelet kubectl
+fi
 
 # Set firewall 
-if ["$1" = "master"]; then
+if [ "$1" = "master" ]; then
 	sudo iptables -I INPUT 1 -p tcp --dport 6443 -j ACCEPT # kube API
 	sudo iptables -I INPUT 1 -p tcp --dport 2370 -j ACCEPT # etcd
 	sudo iptables -I INPUT 1 -p tcp --dport 2380 -j ACCEPT # etcd
@@ -44,7 +52,7 @@ sudo swapoff -a  # Don't forget this! or kubelet will not run
 sudo kubeadm reset
 sudo rm -rf $HOME/.kube/config
 
-if ["$1" = "master"]; then
+if [ "$1" = "master" ]; then
 	sudo kubeadm init --pod-network-cidr=10.0.0.0/16
 	mkdir -p $HOME/.kube
 	sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
@@ -56,13 +64,13 @@ else
 fi	
 
 # Setup CNI
-if ["$1" = "master"]; then
+if [ "$1" = "master" ]; then
 	# Install Calico and set it with CIDR 192.168.0.0/16
 	wget https://raw.githubusercontent.com/projectcalico/calico/v3.25.1/manifests/tigera-operator.yaml
-	kubectl apply -f tigera-operator.yaml
+	kubectl create -f tigera-operator.yaml
 	wget https://raw.githubusercontent.com/projectcalico/calico/v3.25.1/manifests/custom-resources.yaml
 	sed -i 's/192\.168\.0\.0\/16/10.0.0.0\/16/g' "custom-resources.yaml"
-	kubectl apply -f custom-resources.yaml
+	kubectl create -f custom-resources.yaml
 else
 	echo Worker Node Setup
 fi	
