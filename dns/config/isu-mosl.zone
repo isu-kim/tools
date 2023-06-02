@@ -1,0 +1,25 @@
+$TTL 2d
+$ORIGIN isu.mosl.
+
+@                               IN      SOA     isu.mosl. isu.mosl. (
+                                                2023060200 ; serial
+                                                12h        ; refresh
+                                                15m        ; retry
+                                                3w         ; expire
+                                                2h         ;min ttl
+                                                )
+                                IN      NS      ns.isu.mosl.
+
+ns                              IN      A       220.149.244.126
+
+
+; -- add dns records
+
+px1.isu.mosl.              IN      A       192.168.100.112
+ex1.isu.mosl.	           IN      A       192.168.100.107
+g-k8s-master.isu.mosl.     IN      A       192.168.100.152
+g-k8s-worker-1.isu.mosl.   IN      A       192.168.100.197
+g-k8s-worker-2.isu.mosl.   IN      A       192.168.100.136
+g-docker-reg.isu.mosl.     IN      A       192.168.100.114
+opst-master.isu.mosl.      IN      A       192.168.100.113
+opst-worker-1.isu.mosl.    IN      A       192.168.100.108
