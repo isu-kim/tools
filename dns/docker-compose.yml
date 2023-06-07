@@ -14,4 +14,10 @@ services:
       - ./config:/etc/bind
       - ./cache:/var/cache/bind
       - ./records:/var/lib/bind
+    networks:
+      - new_docker_net
     restart: unless-stopped
+
+networks:
+  new_docker_net:
+    external: true
